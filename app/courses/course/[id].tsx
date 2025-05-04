@@ -1,47 +1,54 @@
-import CourseProgress from "@/app/courses/components/course-header";
-import { CourseLog, UserLog } from "@/app/lib/types";
+import {
+  mockCourseContentRequest,
+  mockCourseLogRequest,
+} from "@/app/lib/mocks";
+import { CourseLog } from "@/app/lib/types";
 import { useLocalSearchParams } from "expo-router";
-import { useState } from "react";
-import { StyleSheet, View } from "react-native";
-import CourseContent from "../components/course-content";
-
-import content from "@/app/courses/blueprints/pilkku.json";
-
-const userLog: UserLog = {
-  userId: "user-1",
-  courses: {
-    "course-1": {
-      courseId: "course-1",
-      title: "Lauseet",
-      progress: 0,
-      completed: false,
-      exercises: {},
-    },
-    "course-2": {
-      courseId: "course-2",
-      title: "Pilkku",
-      progress: 0,
-      completed: false,
-      exercises: {},
-    },
-  },
-};
+import { useEffect, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import CourseBody from "../components/course-body";
+import CourseHeader from "../components/course-header";
 
 export default function Course() {
   const { id } = useLocalSearchParams();
-  const [progress, setProgress] = useState(1);
   const courseId = id as string;
-  const [courseLog, setCourseLog] = useState<CourseLog | null>(
-    userLog.courses[courseId] || null
-  );
 
-  console.log("Course Log:", courseLog);
+  const [progress, setProgress] = useState(1);
+  const [loading, setLoading] = useState(true);
+
+  const [courseContent, setCourseContent] = useState<any>(null);
+  const [courseLog, setCourseLog] = useState<CourseLog | null>(null);
+
+  useEffect(() => {
+    const fetchCourseData = async () => {
+      setLoading(true);
+      try {
+        const courseContent = await mockCourseContentRequest(courseId);
+        const courseLog = await mockCourseLogRequest("user-1", courseId);
+        setCourseContent(courseContent);
+        setCourseLog(courseLog);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching course log:", error);
+        setLoading(false);
+      }
+    };
+    fetchCourseData();
+  }, [courseId]);
+
+  if (loading || !courseContent || !courseLog) {
+    return (
+      <View style={styles.container}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
-      <CourseProgress content={content} progress={progress} />
-      <CourseContent
-        content={content}
+      <CourseHeader content={courseContent} progress={progress} />
+      <CourseBody
+        content={courseContent}
         progress={progress}
         setProgress={setProgress}
       />

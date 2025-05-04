@@ -1,17 +1,18 @@
+import { CourseContent } from "@/app/lib/types";
+import Icons from "@expo/vector-icons/Ionicons";
 import { useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Animated, {
+  useAnimatedStyle,
   useSharedValue,
   withTiming,
-  useAnimatedStyle,
 } from "react-native-reanimated";
-import Icons from "@expo/vector-icons/Ionicons";
 
 export default function CourseHeader({
   content,
   progress,
 }: {
-  content: any;
+  content: CourseContent;
   progress: number;
 }) {
   const width = useSharedValue(0);

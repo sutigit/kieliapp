@@ -1,23 +1,24 @@
-import { useEffect, useState, useRef } from "react";
+import { CourseContent } from "@/app/lib/types";
+import { useEffect, useRef, useState } from "react";
 import { View } from "react-native";
-import Frame from "./frame-components/frame";
 import Animated, {
-  useAnimatedRef,
   scrollTo,
-  useSharedValue,
+  useAnimatedRef,
   useDerivedValue,
+  useSharedValue,
 } from "react-native-reanimated";
-import Feedback from "./feedback";
-import ContinueButton from "./buttons/continue-button";
 import CheckButton from "./buttons/check-button";
+import ContinueButton from "./buttons/continue-button";
 import FinishButton from "./buttons/finish-button";
+import Feedback from "./feedback";
+import Frame from "./frame-components/frame";
 
-export default function CourseContent({
+export default function CourseBody({
   content,
   progress,
   setProgress,
 }: {
-  content: any;
+  content: CourseContent;
   progress: number;
   setProgress: (progress: number) => void;
 }) {

@@ -1,15 +1,26 @@
-export interface Content {
-  type: string;
-  image?: string;
-  title?: string;
-  text?: string[];
-  example?: string[];
-  exercise?: Exercise;
+export interface CourseContent {
+  courseId: string;
+  title: string;
+  frames: Array<InstructionFrame | CoverFrame | ExerciseFrame>;
 }
 
-export interface Exercise {
+export type FrameType = "instruction" | "cover" | "exercise";
+
+export interface InstructionFrame {
+  type: "instruction";
+  title: string;
+  text: string;
+  imageUrl?: string;
+}
+export interface CoverFrame {
+  type: "cover";
+  title: string;
+  text: string;
+  imageUrl: string;
+}
+export interface ExerciseFrame {
   id: string;
-  type: string;
+  type: "exercise";
   options?: string[];
   starter?: string;
   answer: string;
@@ -24,7 +35,7 @@ export interface Exercise {
 export interface ExerciseLog {
   exerciseId: string;
   completed: boolean;
-  data: Record<string, Exercise>;
+  data: Record<string, ExerciseFrame>;
 }
 
 export interface CourseLog {
