@@ -20,3 +20,22 @@ export interface Exercise {
     incorrect: string;
   };
 }
+
+export interface ExerciseLog {
+  exerciseId: string;
+  completed: boolean;
+  data: Record<string, Exercise>;
+}
+
+export interface CourseLog {
+  courseId: string;
+  title: string;
+  progress: number;
+  completed: boolean;
+  exercises: Record<string, ExerciseLog>;
+}
+
+export interface UserLog {
+  userId: string;
+  courses: Record<string, CourseLog>;
+}

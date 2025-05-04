@@ -13,7 +13,7 @@ export default function Courses() {
       <Link
         href={{
           pathname: "/courses/course/[id]",
-          params: { id: "123" },
+          params: { id: "course-1" },
         }}
         style={{ fontSize: 20, color: "blue" }}
       >
