@@ -23,16 +23,19 @@ export default function Course() {
     const fetchCourseData = async () => {
       setLoading(true);
       try {
-        const courseContent = await mockCourseContentRequest(courseId);
-        const courseLog = await mockCourseLogRequest("user-1", courseId);
+        const [courseContent, courseLog] = await Promise.all([
+          mockCourseContentRequest(courseId),
+          mockCourseLogRequest("user-1", courseId),
+        ]);
         setCourseContent(courseContent);
         setCourseLog(courseLog);
-        setLoading(false);
       } catch (error) {
-        console.error("Error fetching course log:", error);
+        console.error("Error fetching course data:", error);
+      } finally {
         setLoading(false);
       }
     };
+
     fetchCourseData();
   }, [courseId]);
 
