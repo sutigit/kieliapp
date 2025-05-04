@@ -26,7 +26,7 @@ export interface ExerciseFrame {
   answer: string;
   points: number;
   explanation: string;
-  response: {
+  responseFrame: {
     correct: string;
     incorrect: string;
   };

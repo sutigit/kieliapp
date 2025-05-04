@@ -37,7 +37,7 @@
                     "answer": 2,
                     "points": 5,
                     "explanation":"Se on mitä on!",
-                    "response": {
+                    "responseFrame": {
                         "correct": "Aivan oikein!",
                         "incorrect": "Pilkku on joskus hankala."
                     }
