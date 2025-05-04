@@ -1,7 +1,7 @@
 import { Link } from "expo-router";
 import { View } from "react-native";
 
-export default function Home() {
+export default function Courses() {
   return (
     <View
       style={{
@@ -10,8 +10,14 @@ export default function Home() {
         alignItems: "center",
       }}
     >
-      <Link style={{ fontSize: 20, color: "blue" }} href="/courses">
-        Kurssit
+      <Link
+        href={{
+          pathname: "/courses/course/[id]",
+          params: { id: "123" },
+        }}
+        style={{ fontSize: 20, color: "blue" }}
+      >
+        Pilkku
       </Link>
     </View>
   );

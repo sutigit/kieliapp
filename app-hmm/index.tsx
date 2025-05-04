@@ -1,5 +1,4 @@
-import { Link } from "expo-router";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 
 export default function Home() {
   return (
@@ -10,9 +9,10 @@ export default function Home() {
         alignItems: "center",
       }}
     >
-      <Link style={{ fontSize: 20, color: "blue" }} href="/courses">
+      {/* <Link style={{ fontSize: 20, color: "blue" }} href="/courses">
         Kurssit
-      </Link>
+      </Link> */}
+      <Text style={{ fontSize: 20, color: "blue" }}>Moi</Text>
     </View>
   );
 }
