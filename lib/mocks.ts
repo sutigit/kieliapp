@@ -1,4 +1,4 @@
-import content from "@/app/courses/courses.json";
+import pilkku from "@/lib/modules/pilkku.json";
 import { CourseContent, CourseLog, UserLog } from "@/lib/types";
 
 const userLog: UserLog = {
@@ -24,8 +24,8 @@ const userLog: UserLog = {
 export const mockCourseContentRequest = (courseId: string) => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      const courses = JSON.parse(JSON.stringify(content));
-      const courseContent: CourseContent = courses[courseId];
+      const course = JSON.parse(JSON.stringify(pilkku));
+      const courseContent: CourseContent = course;
 
       if (courseContent) {
         resolve(courseContent);
