@@ -1,6 +1,5 @@
-import { View, StyleSheet, Text } from "react-native";
 import Button from "@/app/components/button";
-import Icons from "@expo/vector-icons/Ionicons";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function CorrectAnswerBanner({ xp }: { xp: number }) {
   return (
@@ -10,8 +9,8 @@ export default function CorrectAnswerBanner({ xp }: { xp: number }) {
         <Text style={styles.xpText}>+{xp} xp</Text>
       </View>
       <View style={styles.buttons}>
-        <Button title="Miksi?" onPress={() => {}} />
-        <Button title="Jatka" onPress={() => {}} />
+        <Button title="Miksi?" onPress={() => { }} />
+        <Button title="Jatka" onPress={() => { }} />
       </View>
     </View>
   );

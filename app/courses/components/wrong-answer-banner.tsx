@@ -1,6 +1,5 @@
-import { View, StyleSheet, Text } from "react-native";
 import Button from "@/app/components/button";
-import Icons from "@expo/vector-icons/Ionicons";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function WrongAnswerBanner() {
   return (
@@ -9,8 +8,8 @@ export default function WrongAnswerBanner() {
         <Text style={styles.text}>❌ Väärä vastaus</Text>
       </View>
       <View style={styles.buttons}>
-        <Button title="Yritä uudestaan" onPress={() => {}} />
-        <Button title="Jatka" onPress={() => {}} />
+        <Button title="Yritä uudestaan" onPress={() => { }} />
+        <Button title="Jatka" onPress={() => { }} />
       </View>
     </View>
   );
