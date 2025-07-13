@@ -1,7 +1,6 @@
 import { CourseContent } from "@/app/lib/types";
-import { smoothScrollTo } from "@/app/lib/utils";
 import { useEffect, useRef, useState } from "react";
-import { Button, ScrollView, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import CheckButton from "./buttons/check-button";
 import ContinueButton from "./buttons/continue-button";
 import FinishButton from "./buttons/finish-button";
@@ -42,6 +41,10 @@ export default function CourseBody({
   useEffect(() => {
     frameRefs.current[progress - 1].measure((x, y) => {
       setTouchBottom(false);
+      scrollRef.current?.scrollTo({
+        y,
+        animated: true
+      })
     });
   }, [progress]);
 
@@ -113,10 +116,10 @@ export default function CourseBody({
         setContainerHeight(height);
       }}
     >
-      <Button
+      {/* <Button
         title="Scroll Smoothly to 500px"
         onPress={() => smoothScrollTo(scrollRef, 800)}
-      />
+      /> */}
       <ScrollView
         ref={scrollRef}
         style={{ flex: 1 }}
