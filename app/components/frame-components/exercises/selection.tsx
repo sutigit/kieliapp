@@ -1,4 +1,4 @@
-import type { Exercise } from "@/lib/types";
+import type { Exercise } from "@/app/lib/types";
 import { useState } from "react";
 import { Pressable, Text, View } from "react-native";
 

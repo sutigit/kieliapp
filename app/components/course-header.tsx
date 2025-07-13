@@ -1,4 +1,4 @@
-import { CourseContent } from "@/lib/types";
+import { CourseContent } from "@/app/lib/types";
 import Icons from "@expo/vector-icons/Ionicons";
 import { useEffect } from "react";
 import { StyleSheet, View } from "react-native";

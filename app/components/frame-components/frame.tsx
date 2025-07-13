@@ -1,6 +1,6 @@
 import { View } from "react-native";
 
-import type { Content } from "@/lib/types";
+import type { Content } from "@/app/lib/types";
 
 import Example from "./example";
 import Image from "./image";

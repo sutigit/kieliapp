@@ -1,4 +1,4 @@
-import Button from "@/app/components/button";
+import Button from "./base-button";
 
 export default function ContinueButton({
   onPress,
