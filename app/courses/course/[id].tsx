@@ -1,8 +1,8 @@
 import {
   mockCourseContentRequest,
   mockCourseLogRequest,
-} from "@/app/lib/mocks";
-import { CourseLog } from "@/app/lib/types";
+} from "@/lib/mocks";
+import { CourseLog } from "@/lib/types";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";

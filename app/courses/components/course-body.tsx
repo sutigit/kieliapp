@@ -1,4 +1,4 @@
-import { CourseContent } from "@/app/lib/types";
+import { CourseContent } from "@/lib/types";
 import { useEffect, useRef, useState } from "react";
 import { ScrollView, View } from "react-native";
 import CheckButton from "./buttons/check-button";

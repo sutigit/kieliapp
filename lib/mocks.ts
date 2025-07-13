@@ -1,5 +1,5 @@
 import content from "@/app/courses/courses.json";
-import { CourseContent, CourseLog, UserLog } from "@/app/lib/types";
+import { CourseContent, CourseLog, UserLog } from "@/lib/types";
 
 const userLog: UserLog = {
   userId: "user-1",
@@ -25,7 +25,6 @@ export const mockCourseContentRequest = (courseId: string) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       const courses = JSON.parse(JSON.stringify(content));
-      console.log("courses", courses);
       const courseContent: CourseContent = courses[courseId];
 
       if (courseContent) {

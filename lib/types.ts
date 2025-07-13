@@ -1,7 +1,7 @@
 export interface CourseContent {
   courseId: string;
   title: string;
-  frames: Array<InstructionFrame | CoverFrame | ExerciseFrame>;
+  frames: (InstructionFrame | CoverFrame | ExerciseFrame)[];
 }
 
 export type FrameType = "instruction" | "cover" | "exercise";

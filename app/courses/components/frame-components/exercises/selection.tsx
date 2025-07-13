@@ -1,6 +1,6 @@
+import type { Exercise } from "@/lib/types";
 import { useState } from "react";
-import { View, Text, Pressable } from "react-native";
-import type { Exercise } from "@/app/lib/types";
+import { Pressable, Text, View } from "react-native";
 
 const SelectionEx = ({
   exercise,
