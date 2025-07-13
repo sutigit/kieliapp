@@ -16,31 +16,25 @@ export default function CourseBody({
   progress: number;
   setProgress: (progress: number) => void;
 }) {
+
+  // Refs ---------------------------------------------------------
   const frameContainerRef = useRef<View>(null);
   const frameRefs = useRef<Record<number, View>>({});
-
   const scrollRef = useRef<ScrollView>(null);
 
-  const [containerHeight, setContainerHeight] = useState(0);
-  const [touchBottom, setTouchBottom] = useState(false);
+  // Layout -------------------------------------------------------
+  const [containerHeight, setContainerHeight] = useState<number>(0);
 
+  // App states ---------------------------------------------------
+  const [isScrollEnd, setIsScrollEnd] = useState<boolean>(false);
   const [controlState, setControlState] = useState<
     "static" | "work" | "check" | "correct" | "incorrect" | "finish"
   >("static");
 
-  const handleScroll = (event: any) => {
-    const { layoutMeasurement, contentOffset, contentSize } = event.nativeEvent;
-    const isAtBottom =
-      layoutMeasurement.height + contentOffset.y >= contentSize.height - 5; // 5px for small buffer
-
-    if (isAtBottom) {
-      setTouchBottom(true);
-    }
-  };
-
   useEffect(() => {
+    // Auto-scroll on progress updated
     frameRefs.current[progress - 1].measure((x, y) => {
-      setTouchBottom(false);
+      setIsScrollEnd(false);
       scrollRef.current?.scrollTo({
         y,
         animated: true
@@ -57,11 +51,21 @@ export default function CourseBody({
     }
   }, [progress, content.frames]);
 
-  const checkExercise = () => {
-    console.log("Check exercise");
+
+  const observeScrollEnd = (event: any) => {
+    // Checks if we are at the bottom of the scroll view. Small buffer added
+    const { layoutMeasurement, contentOffset, contentSize } = event.nativeEvent;
+    const isAtBottom =
+      layoutMeasurement.height + contentOffset.y >= contentSize.height - 5; // 5px for small buffer
+
+    if (isAtBottom) {
+      setIsScrollEnd(true);
+    }
   };
 
-  const FrameControls = () => {
+  const checkExercise = () => { }
+
+  const Controls = () => {
     const getControl = () => {
       switch (controlState) {
         case "static":
@@ -116,15 +120,11 @@ export default function CourseBody({
         setContainerHeight(height);
       }}
     >
-      {/* <Button
-        title="Scroll Smoothly to 500px"
-        onPress={() => smoothScrollTo(scrollRef, 800)}
-      /> */}
+
       <ScrollView
         ref={scrollRef}
         style={{ flex: 1 }}
-        onScroll={handleScroll}
-        scrollEventThrottle={16} // ~60fps for better responsiveness
+        onScroll={observeScrollEnd}
         contentContainerStyle={{ flexGrow: 1 }}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
@@ -147,9 +147,9 @@ export default function CourseBody({
             </View>
           ))}
         </View>
-        <FrameControls />
+        <Controls />
       </ScrollView>
-      {touchBottom && <FrameControls />}
+      {isScrollEnd && <Controls />}
     </View>
   );
 }
