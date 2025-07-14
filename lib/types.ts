@@ -51,14 +51,14 @@ export interface ExerciseFrame {
 /**
  * Exercise types ----------------------------------------------------------------------------
  */
-export type Exercise = ExerciseTypeSelection;
+export type Exercise = SelectionTypeExercise;
 
 /**
  * A selection of answer options
  */
-export interface ExerciseTypeSelection {
-  id: string;
+export interface SelectionTypeExercise {
   type: "selection";
+  id: string;
   options: string[];
   answerIndex: number;
   points: number;

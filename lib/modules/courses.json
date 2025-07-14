@@ -37,7 +37,7 @@
               "Opiskeltuani, tunnin pidin pienen tauon.",
               "Opiskeltuani tunnin, pidin pienen tauon."
             ],
-            "answer": 2,
+            "answerIndex": 1,
             "points": 5,
             "explanation": "Se on mitä on!",
             "responseFrame": {

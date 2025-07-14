@@ -1,11 +1,11 @@
-import type { Exercise } from "@/lib/types";
-import { useState } from "react";
+import type { SelectionTypeExercise } from "@/lib/types";
+import { useEffect, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 
 const Selection = ({
-  exercise,
+  content,
 }: {
-  exercise: Exercise;
+  content: SelectionTypeExercise;
 }) => {
   const [selected, setSelected] = useState<number | null>(null);
 
@@ -30,9 +30,15 @@ const Selection = ({
     }
   };
 
+  useEffect(() => {
+    if (selected === null) return;
+
+    console.log("📌 selected", selected)
+  }, [selected]);
+
   return (
     <View style={{ marginTop: 10 }}>
-      {exercise.options?.map((option, index) => (
+      {content.options?.map((option, index) => (
         <Pressable
           onPress={() => {
             setSelected(index);

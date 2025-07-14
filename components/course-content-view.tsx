@@ -11,10 +11,14 @@ export default function CourseContentViewHeight({
   content,
   progress,
   setProgress,
+  controlState,
+  setControlState
 }: {
   content: CourseContent;
   progress: number;
   setProgress: (progress: number) => void;
+  controlState: ControlState,
+  setControlState: (state: ControlState) => void;
 }) {
 
   // Refs ---------------------------------------------------------
@@ -27,7 +31,7 @@ export default function CourseContentViewHeight({
 
   // App states ---------------------------------------------------
   const [isScrollEnd, setIsScrollEnd] = useState<boolean>(false);
-  const [controlState, setControlState] = useState<ControlState>("static");
+
 
   useEffect(() => {
     // Auto-scroll on progress updated
@@ -51,7 +55,7 @@ export default function CourseContentViewHeight({
       setControlState("static");
     }
 
-  }, [progress, content.frames]);
+  }, [progress, content.frames, setControlState]);
 
   const observeScrollEnd = (event: any) => {
     // Checks if we are at the bottom of the scroll view. Small buffer added

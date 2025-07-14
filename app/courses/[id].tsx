@@ -4,7 +4,7 @@ import {
   mockCourseContentRequest,
   mockCourseLogRequest,
 } from "@/lib/mocks";
-import { CourseContent, CourseLog } from "@/lib/types";
+import { ControlState, CourseContent, CourseLog } from "@/lib/types";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -13,7 +13,10 @@ export default function Course() {
   const { id } = useLocalSearchParams();
   const courseId = id as string;
 
+  // should be state managed
   const [progress, setProgress] = useState<number>(1);
+  const [controlState, setControlState] = useState<ControlState>("static"); // should be state managed
+
   const [loading, setLoading] = useState<boolean>(true);
 
   const [courseContent, setCourseContent] = useState<CourseContent | null>(null);
@@ -54,6 +57,8 @@ export default function Course() {
         content={courseContent}
         progress={progress}
         setProgress={setProgress}
+        controlState={controlState}
+        setControlState={setControlState}
       />
     </View>
   );
