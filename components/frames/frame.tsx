@@ -11,14 +11,13 @@ export default function FrameView({
 }) {
 
   const renderFrame = (frame: Frame) => {
-    switch (frame.type) {
-      case 'cover':
-        return <CoverFrameView content={frame.content as CoverFrame} />
-      case 'static':
-        return <StaticFrameView content={frame.content as StaticFrame} />
-      case 'exercise':
-        return <ExerciseFrameView content={frame.content as ExerciseFrame} />
-    }
+    const frames = {
+      cover: <CoverFrameView content={frame.content as CoverFrame} />,
+      static: <StaticFrameView content={frame.content as StaticFrame} />,
+      exercise: <ExerciseFrameView content={frame.content as ExerciseFrame} />,
+    };
+
+    return frames[frame.type] || null;
   }
 
   return (

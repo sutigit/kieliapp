@@ -64,6 +64,49 @@ export default function CourseContentView({
   const checkExercise = () => { }
 
   const Controls = ({ state }: { state: ControlState }) => {
+
+    const options = {
+      /**
+       * A static frame - a frame that does not require any user interactions
+       */
+      "static": <ContinueButton
+        onPress={() => {
+          setProgress(progress + 1);
+        }}
+      />,
+
+      /**
+       * When a frame has an exercise and no user input applied
+       * show a grayed-out check button
+       */
+      "exercise-start": <CheckButton disabled />,
+
+      /**
+       * When user input has been applied, allow the exercise to be checked
+       */
+      "exercise-check": <CheckButton
+        onPress={() => {
+          checkExercise();
+        }}
+      />,
+
+      /**
+       * Return feedback on correct answer
+       */
+      "exercise-correct": <Feedback answer="correct" xp={10} />,
+
+      /**
+       * Return feedback on wrong answer
+       */
+      "exercise-incorrect": <Feedback answer="wrong" xp={10} />,
+
+      /**
+       * When user reaches the last frame
+       */
+      "finish": <FinishButton onPress={() => { }} />,
+
+    };
+
     return (
       <View
         style={{
@@ -75,65 +118,7 @@ export default function CourseContentView({
           padding: 30,
         }}
       >
-        {(
-          /**
-           * Returns appropriate control component according the type of frame currently on
-           */
-          () => {
-            switch (state) {
-
-              /**
-               * A static frame - a frame that does not require any user interactions
-               */
-              case "static":
-                return (
-                  <ContinueButton
-                    onPress={() => {
-                      setProgress(progress + 1);
-                    }}
-                  />
-                );
-
-              /**
-               * When a frame has an exercise and no user input applied
-               * show a grayed-out check button
-               */
-              case "exercise-start":
-                return <CheckButton disabled />;
-
-              /**
-               * When user input has been applied, allow the exercise to be checked
-               */
-              case "exercise-check":
-                return (
-                  <CheckButton
-                    onPress={() => {
-                      checkExercise();
-                    }}
-                  />
-                );
-
-              /**
-               * Return feedback on correct answer
-               */
-              case "exercise-correct":
-                return <Feedback answer="correct" xp={10} />;
-
-              /**
-               * Return feedback on wront answer
-               */
-              case "exercise-incorrect":
-                return <Feedback answer="wrong" xp={10} />;
-
-              /**
-               * When user reaches the last frame
-               */
-              case "finish":
-                return <FinishButton onPress={() => { }} />;
-              default:
-                return null;
-            }
-          })()}
+        {options[state] || null}
       </View>
     );
   };
