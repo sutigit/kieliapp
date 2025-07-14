@@ -10,7 +10,9 @@ export default function RootLayout() {
         headerTintColor: "#333",
       }}
     >
-      <Stack.Screen name="index" />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="courses/index" options={{ headerShown: false }} />
+      <Stack.Screen name="courses/[id]" options={{ headerShown: false }} />
     </Stack>
   );
 }
