@@ -166,7 +166,7 @@ export default function CourseContentView({
                 minHeight: index === progress - 1 ? CourseContentView : "auto", // expand the last frame to fit this parent container
               }}
             >
-              <FrameView frame={frame} action={() => { }} />
+              <FrameView frame={frame} />
             </View>
           ))}
         </View>

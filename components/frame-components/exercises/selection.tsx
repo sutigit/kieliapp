@@ -4,10 +4,8 @@ import { Pressable, Text, View } from "react-native";
 
 const SelectionEx = ({
   exercise,
-  action,
 }: {
   exercise: Exercise;
-  action: () => void;
 }) => {
   const [selected, setSelected] = useState<number | null>(null);
 

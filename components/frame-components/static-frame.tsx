@@ -1,11 +1,19 @@
 import { StaticFrame } from '@/lib/types'
 import React from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
+import Example from './example'
+import Image from './image'
+import TextBlock from './text-block'
+import Title from './title'
 
 export default function StaticFrameView({ content }: { content: StaticFrame }) {
+
     return (
-        <View>
-            <Text>static-frame</Text>
+        <View style={{ flex: 1, paddingHorizontal: 20, paddingVertical: 15 }}>
+            {content.imageUrl && <Image image={content.imageUrl} />}
+            {content.title && <Title text={content.title} />}
+            {content.text && <TextBlock text={content.text} />}
+            {content.example && <Example text={content.example} />}
         </View>
     )
 }

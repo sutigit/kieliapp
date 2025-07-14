@@ -23,7 +23,7 @@ export interface Frame {
  */
 export interface CoverFrame {
   title: string;
-  text: string;
+  text: string[];
   imageUrl: string;
 }
 
@@ -31,19 +31,32 @@ export interface CoverFrame {
  *
  */
 export interface StaticFrame {
-  title: string;
-  text: string;
+  title?: string;
+  text?: string[];
   imageUrl?: string;
+  example?: string[];
 }
 
 /**
  * A frame that includes an exercise
  */
 export interface ExerciseFrame {
+  title?: string;
+  text?: string[];
+  imageUrl?: string;
+  exercise: Exercise;
+}
+
+/**
+ * Exercise types ----------------------------------------------------------------------------
+ */
+export type Exercise = ExerciseTypeSelection;
+
+export interface ExerciseTypeSelection {
   id: string;
-  options?: string[];
-  starter?: string;
-  answer: string;
+  type: "selection";
+  options: string[];
+  answerIndex: number;
   points: number;
   explanation: string;
   responseFrame: {

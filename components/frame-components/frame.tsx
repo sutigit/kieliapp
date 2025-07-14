@@ -6,10 +6,8 @@ import StaticFrameView from "./static-frame";
 
 export default function FrameView({
   frame,
-  action,
 }: {
   frame: Frame;
-  action: () => void;
 }) {
 
   const renderFrame = (frame: Frame) => {
