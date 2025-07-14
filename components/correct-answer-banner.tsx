@@ -1,14 +1,15 @@
-import Button from "@/app/components/buttons/base-button";
+import Button from "@/components/buttons/base-button";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function WrongAnswerBanner() {
+export default function CorrectAnswerBanner({ xp }: { xp: number }) {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.text}>❌ Väärä vastaus</Text>
+        <Text style={styles.text}>🎉 Oikein!</Text>
+        <Text style={styles.xpText}>+{xp} xp</Text>
       </View>
       <View style={styles.buttons}>
-        <Button title="Yritä uudestaan" onPress={() => { }} />
+        <Button title="Miksi?" onPress={() => { }} />
         <Button title="Jatka" onPress={() => { }} />
       </View>
     </View>
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     gap: 25,
     width: "100%",
     padding: 30,
-    backgroundColor: "lightcoral",
+    backgroundColor: "lightgreen",
   },
   content: {
     display: "flex",
@@ -34,6 +35,11 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     fontWeight: "bold",
+  },
+  xpText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "green",
   },
   buttons: {
     display: "flex",

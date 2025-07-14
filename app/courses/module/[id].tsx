@@ -1,5 +1,5 @@
-import CourseBody from "@/app/components/course-body";
-import CourseHeader from "@/app/components/course-header";
+import CourseBody from "@/components/course-body";
+import CourseHeader from "@/components/course-header";
 import {
   mockCourseContentRequest,
   mockCourseLogRequest,
