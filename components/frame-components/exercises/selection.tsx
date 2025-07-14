@@ -2,7 +2,7 @@ import type { Exercise } from "@/lib/types";
 import { useState } from "react";
 import { Pressable, Text, View } from "react-native";
 
-const SelectionEx = ({
+const Selection = ({
   exercise,
 }: {
   exercise: Exercise;
@@ -60,4 +60,4 @@ const SelectionEx = ({
   );
 };
 
-export default SelectionEx;
+export default Selection;

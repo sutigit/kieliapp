@@ -5,7 +5,7 @@ import CheckButton from "./buttons/check-button";
 import ContinueButton from "./buttons/continue-button";
 import FinishButton from "./buttons/finish-button";
 import Feedback from "./feedback";
-import FrameView from "./frame-components/frame";
+import FrameView from "./frames/frame";
 
 export default function CourseContentView({
   content,
