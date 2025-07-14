@@ -7,7 +7,7 @@ import FinishButton from "./buttons/finish-button";
 import Feedback from "./feedback";
 import Frame from "./frame-components/frame";
 
-export default function CourseBody({
+export default function CourseContentView({
   content,
   progress,
   setProgress,

@@ -1,4 +1,4 @@
-import { CourseContent } from "@/app/lib/types";
+import { CourseContent } from "@/lib/types";
 import Icons from "@expo/vector-icons/Ionicons";
 import { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
@@ -8,7 +8,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 
-export default function CourseHeader({
+export default function ProgessBar({
   content,
   progress,
 }: {
@@ -20,7 +20,7 @@ export default function CourseHeader({
   useEffect(() => {
     const ratio = (progress / content.frames.length) * 100;
     width.value = withTiming(ratio);
-  }, [progress]);
+  }, [content.frames.length, progress, width]);
 
   const animatedWidth = useAnimatedStyle(() => {
     return {

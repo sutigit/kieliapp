@@ -1,5 +1,5 @@
-import CourseBody from "@/components/course-body";
-import CourseHeader from "@/components/course-header";
+import CourseContentView from "@/components/course-content-view";
+import ProgressBar from "@/components/ProgressBar";
 import {
   mockCourseContentRequest,
   mockCourseLogRequest,
@@ -49,8 +49,8 @@ export default function Course() {
 
   return (
     <View style={styles.container}>
-      <CourseHeader content={courseContent} progress={progress} />
-      <CourseBody
+      <ProgressBar content={courseContent} progress={progress} />
+      <CourseContentView
         content={courseContent}
         progress={progress}
         setProgress={setProgress}
