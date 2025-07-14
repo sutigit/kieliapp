@@ -7,7 +7,7 @@ import FinishButton from "./buttons/finish-button";
 import Feedback from "./feedback";
 import FrameView from "./frames/frame";
 
-export default function CourseContentView({
+export default function CourseContentViewHeight({
   content,
   progress,
   setProgress,
@@ -23,7 +23,7 @@ export default function CourseContentView({
   const scrollRef = useRef<ScrollView>(null);
 
   // Layout -------------------------------------------------------
-  const [CourseContentView, setViewportHeight] = useState<number>(0);
+  const [CourseContentViewHeight, SetCourseContentViewHeight] = useState<number>(0);
 
   // App states ---------------------------------------------------
   const [isScrollEnd, setIsScrollEnd] = useState<boolean>(false);
@@ -43,11 +43,14 @@ export default function CourseContentView({
   useEffect(() => {
     // Sets the state of the current module based on the current frame
     const type = content.frames[progress - 1].type;
+
+    // if the type is not "exercise" - in other words interactive - then the control state is always "static"
     if (type === "exercise") {
       setControlState("exercise-start");
     } else {
       setControlState("static");
     }
+
   }, [progress, content.frames]);
 
   const observeScrollEnd = (event: any) => {
@@ -129,7 +132,7 @@ export default function CourseContentView({
       style={{ flex: 1, position: "relative" }}
       onLayout={(e) => {
         const { height } = e.nativeEvent.layout;
-        setViewportHeight(height);
+        SetCourseContentViewHeight(height);
       }}
     >
 
@@ -148,7 +151,7 @@ export default function CourseContentView({
               ref={(el) => { if (el) frameRefs.current[index] = el }}
               style={{
                 height: index < progress ? "auto" : 0, // all the frames to come are "hidden", by setting height to 0
-                minHeight: index === progress - 1 ? CourseContentView : "auto", // expand the last frame to fit this parent container
+                minHeight: index === progress - 1 ? CourseContentViewHeight : "auto", // expand the last frame to fit this parent container
               }}
             >
               <FrameView frame={frame} />

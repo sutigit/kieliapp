@@ -9,6 +9,7 @@ export type ControlState =
 export interface CourseContent {
   courseId: string;
   title: string;
+  description: string;
   frames: Frame[];
 }
 
@@ -28,7 +29,7 @@ export interface CoverFrame {
 }
 
 /**
- *
+ * Frame that consists only static elements
  */
 export interface StaticFrame {
   title?: string;
@@ -52,6 +53,9 @@ export interface ExerciseFrame {
  */
 export type Exercise = ExerciseTypeSelection;
 
+/**
+ * A selection of answer options
+ */
 export interface ExerciseTypeSelection {
   id: string;
   type: "selection";
