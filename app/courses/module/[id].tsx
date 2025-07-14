@@ -1,3 +1,5 @@
+import CourseBody from "@/app/components/course-body";
+import CourseHeader from "@/app/components/course-header";
 import {
   mockCourseContentRequest,
   mockCourseLogRequest,
@@ -6,8 +8,6 @@ import { CourseLog } from "@/lib/types";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import CourseBody from "../components/course-body";
-import CourseHeader from "../components/course-header";
 
 export default function Course() {
   const { id } = useLocalSearchParams();
