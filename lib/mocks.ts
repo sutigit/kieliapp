@@ -32,7 +32,7 @@ export const mockCourseContentRequest = (courseId: string) => {
       } else {
         resolve(null);
       }
-    }, 1000);
+    }, 300);
   });
 };
 
@@ -51,6 +51,6 @@ export const mockCourseLogRequest = (userId: string, courseId: string) => {
           exercises: {},
         });
       }
-    }, 1000);
+    }, 300);
   });
 };

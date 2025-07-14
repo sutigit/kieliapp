@@ -1,32 +1,31 @@
+import { CoverFrame, ExerciseFrame, Frame, StaticFrame } from "@/lib/types";
 import { View } from "react-native";
+import CoverFrameView from "./cover-frame";
+import ExerciseFrameView from "./exercise-frame";
+import StaticFrameView from "./static-frame";
 
-import type { Content } from "@/app/lib/types";
-
-import Example from "./example";
-import Image from "./image";
-import TextBlock from "./text-block";
-import Title from "./title";
-
-import SelectionEx from "./exercises/selection";
-
-export default function Frame({
-  content,
+export default function FrameView({
+  frame,
   action,
 }: {
-  content: Content;
+  frame: Frame;
   action: () => void;
 }) {
+
+  const renderFrame = (frame: Frame) => {
+    switch (frame.type) {
+      case 'cover':
+        return <CoverFrameView content={frame.content as CoverFrame} />
+      case 'static':
+        return <StaticFrameView content={frame.content as StaticFrame} />
+      case 'exercise':
+        return <ExerciseFrameView content={frame.content as ExerciseFrame} />
+    }
+  }
+
   return (
     <View style={{ flex: 1 }}>
-      {content.image && <Image image={content.image} />}
-      <View style={{ flex: 1, paddingHorizontal: 20, paddingVertical: 15 }}>
-        {content.title && <Title text={content.title} />}
-        {content.text && <TextBlock text={content.text} />}
-        {content.example && <Example text={content.example} />}
-        {content.exercise && (
-          <SelectionEx exercise={content.exercise} action={action} />
-        )}
-      </View>
+      {renderFrame(frame)}
     </View>
   );
 }

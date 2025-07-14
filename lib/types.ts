@@ -1,26 +1,46 @@
+export type ControlState =
+  | "static"
+  | "exercise-start"
+  | "exercise-check"
+  | "exercise-correct"
+  | "exercise-incorrect"
+  | "finish";
+
 export interface CourseContent {
   courseId: string;
   title: string;
-  frames: (InstructionFrame | CoverFrame | ExerciseFrame)[];
+  frames: Frame[];
 }
 
-export type FrameType = "instruction" | "cover" | "exercise";
-
-export interface InstructionFrame {
-  type: "instruction";
-  title: string;
-  text: string;
-  imageUrl?: string;
+export type FrameType = "static" | "cover" | "exercise";
+export interface Frame {
+  type: FrameType;
+  content: CoverFrame | StaticFrame | ExerciseFrame;
 }
+
+/**
+ * The starting frame of any module - includes a a title, cover image and a description of the study module
+ */
 export interface CoverFrame {
-  type: "cover";
   title: string;
   text: string;
   imageUrl: string;
 }
+
+/**
+ *
+ */
+export interface StaticFrame {
+  title: string;
+  text: string;
+  imageUrl?: string;
+}
+
+/**
+ * A frame that includes an exercise
+ */
 export interface ExerciseFrame {
   id: string;
-  type: "exercise";
   options?: string[];
   starter?: string;
   answer: string;
@@ -32,12 +52,20 @@ export interface ExerciseFrame {
   };
 }
 
+/**
+ * LOGS ---------------------------------------------------------------------------------------
+ * logs are for keeping track of the study modules states per user
+ */
+
 export interface ExerciseLog {
   exerciseId: string;
   completed: boolean;
   data: Record<string, ExerciseFrame>;
 }
 
+/**
+ * Information of user specific state of the course
+ */
 export interface CourseLog {
   courseId: string;
   title: string;

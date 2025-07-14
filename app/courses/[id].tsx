@@ -1,10 +1,10 @@
 import CourseContentView from "@/components/course-content-view";
-import ProgressBar from "@/components/ProgressBar";
+import ProgressBar from "@/components/progress-bar";
 import {
   mockCourseContentRequest,
   mockCourseLogRequest,
 } from "@/lib/mocks";
-import { CourseLog } from "@/lib/types";
+import { CourseContent, CourseLog } from "@/lib/types";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -13,10 +13,10 @@ export default function Course() {
   const { id } = useLocalSearchParams();
   const courseId = id as string;
 
-  const [progress, setProgress] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const [courseContent, setCourseContent] = useState<any>(null);
+  const [courseContent, setCourseContent] = useState<CourseContent | null>(null);
   const [courseLog, setCourseLog] = useState<CourseLog | null>(null);
 
   useEffect(() => {
@@ -27,8 +27,8 @@ export default function Course() {
           mockCourseContentRequest(courseId),
           mockCourseLogRequest("user-1", courseId),
         ]);
-        setCourseContent(courseContent);
-        setCourseLog(courseLog);
+        setCourseContent(courseContent as CourseContent);
+        setCourseLog(courseLog as CourseLog);
       } catch (error) {
         console.error("Error fetching course data:", error);
       } finally {
